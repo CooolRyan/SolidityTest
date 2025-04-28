@@ -19,4 +19,9 @@ module.exports = {
       chainId: 80002,
     },
   },
+  etherscan: {
+    apiKey: {
+      polygonAmoy: process.env.POLYGONSCAN_API_KEY, // << 추가
+    },
+  },
 };
