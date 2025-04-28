@@ -12,33 +12,22 @@ contract ERC1400 {
     constructor(
         string memory _name,
         string memory _symbol,
-        bytes32[] memory _partitions,
-        uint8 _decimals,
-        address[] memory _controllers,
-        address[] memory _issuers
+        uint8 _decimals
     ) {
         name = _name;
         symbol = _symbol;
         decimals = _decimals;
-        totalSupply = 1000000 * (10 ** uint256(_decimals));
-        balanceOf[msg.sender] = totalSupply;
     }
 
-
-
-     // =============================
-    // [1] Mint 기능 추가
-    // =============================
-    function mint(address to, uint256 amount) public {
-        require(to != address(0), "ERC1400: mint to the zero address");
+    // [1] Issue (Mint)
+    function issue(address to, uint256 amount, bytes calldata /*data*/) external {
+        require(to != address(0), "ERC1400: issue to the zero address");
         totalSupply += amount;
         balanceOf[to] += amount;
     }
 
-    // =============================
-    // [2] Transfer 기능 추가
-    // =============================
-    function transfer(address to, uint256 amount) public returns (bool) {
+    // [2] Transfer
+    function transfer(address to, uint256 amount) external returns (bool) {
         require(to != address(0), "ERC1400: transfer to the zero address");
         require(balanceOf[msg.sender] >= amount, "ERC1400: transfer amount exceeds balance");
 

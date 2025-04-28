@@ -8,15 +8,12 @@ async function main() {
   const Token = await hre.ethers.getContractFactory("ERC1400");
 
   const token = await Token.deploy(
-    "STO TEST TOKEN",
-    "MST",
-    ["0x7265736572766564000000000000000000000000000000000000000000000000"],
-    18,
-    [],
-    []
+    "STO TEST TOKEN",   // _name
+    "MST",              // _symbol
+    18                  // _decimals
   );
 
-  await token.waitForDeployment();  // <<<< 이거로 수정해야 함
+  await token.waitForDeployment();
 
   console.log("ERC-1400 Token deployed to:", await token.getAddress());
 }
