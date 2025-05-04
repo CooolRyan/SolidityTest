@@ -1,4 +1,5 @@
 require("@nomicfoundation/hardhat-toolbox");
+require("hardhat-erc1820");
 const dotenv = require("dotenv");
 
 dotenv.config();
